@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Today_Study</string>
+    <string-array name="testMainLog_Name">
+        <item>길가다 넘어졌더니 너무 힘들었다.</item>
+        <item>가갸거겨 고교 구규 그큐</item>
+    </string-array>
+</resources>
