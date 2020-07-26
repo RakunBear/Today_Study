@@ -2,6 +2,9 @@ package com.example.today_study;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,12 +18,15 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import com.example.today_study.Fragment.FragmentBottomDaily;
+import com.example.today_study.Fragment.FragmentBottomSpecial;
 import com.example.today_study.MainLog.MainLogAdapter;
 import com.example.today_study.MainLog.MainLogItem;
 
@@ -37,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
     Intent intent;
     // BGM
     MediaPlayer mediaPlayer;
+    // Bottom&Side Bar
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+    Fragment fragmentBottomDaily;
+    Fragment fragmentBottomSpecial;
     // RankTable
 
     // MainLog System
@@ -51,10 +62,8 @@ public class MainActivity extends AppCompatActivity {
     ViewGroup bottomBar;
     @BindView(R.id.bottomBar_Menu)
     ViewGroup bottomBar_Menu;
-    @BindView(R.id.bottomBar_daily)
-    ViewGroup bottomBar_daily;
-    @BindView(R.id.bottomBar_special)
-    ViewGroup bottomBar_special;
+    @BindView(R.id.bottom_FrameLayout)
+    ViewGroup bottom_FrameLayout;
     @BindView(R.id.dailyBtn)
     Button dailyBtn;
     @BindView(R.id.specialBtn)
@@ -102,7 +111,16 @@ public class MainActivity extends AppCompatActivity {
         // Set MediaPlayer
         mediaPlayer = MediaPlayer.create(context, R.raw.littleidea);
         mediaPlayer.setLooping(true);
+        mediaPlayer.setVolume(0, 0);
         mediaPlayer.start();
+
+        // Bottom&Side Bar
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentBottomDaily = new FragmentBottomDaily();
+        fragmentBottomSpecial = new FragmentBottomSpecial();
+        fragmentTransaction.replace(R.id.frameLayout, fragmentBottomDaily).commitAllowingStateLoss();
 
         // Set OnClikListener
         dailyBtn.setOnClickListener(ButtonOnClickListener);
@@ -142,29 +160,23 @@ public class MainActivity extends AppCompatActivity {
                 // BottomBar
                 case R.id.dailyBtn :
                     if (isBottomBarShow) {
-                        if (bottomBar_special.getVisibility() == View.VISIBLE) {
-                            bottomBar_special.setVisibility(View.GONE);
-                            bottomBar_daily.setVisibility(View.VISIBLE);
-                        } else {
-                            HideBottomBar(bottomBar_daily);
-                            isBottomBarShow = false;
-                        }
+                        fragmentTransaction.remove(fragmentBottomDaily).commit();
+                        HideBottomBar();
+                        isBottomBarShow = false;
                     } else {
-                        ShowBottomBar(bottomBar_daily);
+                        fragmentTransaction.replace(R.id.frameLayout, fragmentBottomDaily).commitAllowingStateLoss();
+                        ShowBottomBar();
                         isBottomBarShow = true;
                     }
                     break;
                 case R.id.specialBtn :
                     if (isBottomBarShow) {
-                        if (bottomBar_daily.getVisibility() == View.VISIBLE) {
-                            bottomBar_daily.setVisibility(View.GONE);
-                            bottomBar_special.setVisibility(View.VISIBLE);
-                        } else {
-                            HideBottomBar(bottomBar_special);
-                            isBottomBarShow = false;
-                        }
+                        fragmentTransaction.remove(fragmentBottomSpecial).commit();
+                        HideBottomBar();
+                        isBottomBarShow = false;
                     } else {
-                        ShowBottomBar(bottomBar_special);
+                        fragmentTransaction.replace(R.id.frameLayout, fragmentBottomSpecial).commitAllowingStateLoss();
+                        ShowBottomBar();
                         isBottomBarShow = true;
                     }
                     break;
@@ -220,20 +232,19 @@ public class MainActivity extends AppCompatActivity {
     /* End Rank Table */
 
     /* BottomBar */
-    private void ShowBottomBar(ViewGroup _bottomBar) {
+    private void ShowBottomBar() {
         Animation slide = AnimationUtils.loadAnimation(context, R.anim.bottombar_show);
 
         bottomBar_Menu.startAnimation(slide);
-        _bottomBar.startAnimation(slide);
-        _bottomBar.setVisibility(View.VISIBLE);
+        bottom_FrameLayout.startAnimation(slide);
 
     }
 
-    private void HideBottomBar(ViewGroup _bottomBar) {
+    private void HideBottomBar() {
         Animation slide = AnimationUtils.loadAnimation(context, R.anim.bottombar_hidden);
 
         bottomBar_Menu.startAnimation(slide);
-        _bottomBar.setVisibility(View.GONE);
+        bottom_FrameLayout.startAnimation(slide);
     }
 
     /* End Bottom Bar */

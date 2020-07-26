@@ -8,6 +8,7 @@
     tools:context=".LoginActivity">
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
@@ -41,12 +42,19 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="349dp"
         android:layout_height="365dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="69dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="59dp"
         android:background="#000000"
-        android:padding="20sp"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="307dp">
+        android:padding="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
 
         <View
             android:layout_width="wrap_content"
@@ -57,44 +65,46 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="105dp"
-        android:layout_marginTop="414dp"
+        android:layout_marginStart="106dp"
         android:layout_marginEnd="106dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="@+id/linearLayout4"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout4">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp"
-            android:background="#FFF000">
+            android:background="#FFF000"
+            android:padding="10dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
-                android:hint="ID: "/>
+                android:hint="ID: " />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10sp"
-            android:background="#FFF000">
+            android:background="#FFF000"
+            android:padding="10dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
-                android:hint="PW: "/>
+                android:hint="PW: " />
         </LinearLayout>
 
         <View
             android:id="@+id/divider5"
             android:layout_width="match_parent"
-            android:layout_marginTop="5sp"
-            android:layout_marginBottom="5sp"
-            android:layout_height="5sp"
+            android:layout_height="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:background="?android:attr/listDivider" />
 
 
