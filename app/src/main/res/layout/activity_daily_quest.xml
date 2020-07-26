@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FF5722"
     android:orientation="vertical"
-    tools:context=".DailyQuestActivity"
+    tools:context="com.mypj.today_study.DailyQuestActivity"
     android:padding="20dp">
 
     <FrameLayout
@@ -41,6 +41,7 @@
             android:layout_weight="9"/>
 
         <Button
+            android:id="@+id/dailyQuest_AddBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

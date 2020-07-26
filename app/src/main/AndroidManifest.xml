@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SpecialQuestActivity"></activity>
-        <activity android:name=".DailyQuestActivity" />
-        <activity android:name=".TalkRoomActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.mypj.today_study.SpecialQuestActivity"></activity>
+        <activity android:name="com.mypj.today_study.DailyQuestActivity" />
+        <activity android:name="com.mypj.today_study.TalkRoomActivity" />
+        <activity android:name="com.mypj.today_study.MainActivity" />
+        <activity android:name="com.mypj.today_study.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
